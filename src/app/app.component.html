@@ -205,21 +205,19 @@
           </div>
       <!-- addMag -->
         <div [style.display]='visibility[5]' class="col-sm-12"> 
-              <div class='well'>
-                <h2>New magazzino</h2>
-                </div>
-                <div class="form-group">
-                  <label for="nomeMagazzino">Nome magazzino</label>
-                  <input type="text" class="form-control" id="nomeMagazzino"  [(ngModel)]="magazzinoNomeModel" >
-                </div>
-                <div class="form-group">
-                    <label for="location">Locazione magazzino</label>
-                    <input type="text" class="form-control" id="location"  [(ngModel)]="magazzinoLocazioneModel" >
-                  </div>
-            
-                <input style="float:left"  type="button" class="btn btn-success" (click)="createMagazzino()" value='ok' >
-              
-              </div>
+          <div class='well'>
+            <h2>New magazzino</h2>
+            </div>
+            <div class="form-group">
+              <label for="nomeMagazzino">Nome magazzino</label>
+              <input type="text" class="form-control" id="nomeMagazzino"  [(ngModel)]="magazzinoNomeModel" >
+            </div>
+            <div class="form-group">
+                <label for="location">Locazione magazzino</label>
+                <input type="text" class="form-control" id="location"  [(ngModel)]="magazzinoLocazioneModel" >
+            </div>
+            <input style="float:left"  type="button" class="btn btn-success" (click)="createMagazzino()" value='ok' >
+        </div>
       <!-- listaMisura -->
         <div [style.display]='visibility[6]' class="col-sm-12">
           <div class='well'><h2>Misure</h2></div>
