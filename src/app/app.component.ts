@@ -291,7 +291,7 @@ export class AppComponent implements OnInit{
     );
     }
   createMagazzino(){
-    this.magazzino = { Nome : this.magazzinoNomeModel ,Locazione : this.magazzinoLocazioneModel};
+   /*  this.magazzino = { Nome : this.magazzinoNomeModel ,Locazione : this.magazzinoLocazioneModel};
       this.serviceMagazzino.create(this.magazzino,"Magazzino/InsertMagazzino").subscribe(
          data => {
            this.getMagazzini();
@@ -302,7 +302,7 @@ export class AppComponent implements OnInit{
            console.error("Error saving misura!");
            return Observable.throw(error);
          }
-      );
+      ); */
       }
   insertInClient(misuraIn:string){
     

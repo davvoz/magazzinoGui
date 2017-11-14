@@ -1,6 +1,7 @@
 import {Injectable} from "@angular/core";
 import {Http, Response, Headers, RequestOptions} from "@angular/http";
 import {Observable} from "rxjs/Rx";
+import 'rxjs/add/operator/map';
 @Injectable()
 export class HttpService {
     constructor(private http:Http ) { }
@@ -16,17 +17,17 @@ export class HttpService {
         body : body
       }
     }
-    getFromId(elId , query ) {
+    getFromId( elId , query ) {
       return this.http.get( this.root + query + elId).map((res:Response) => res.json());
     }
-    getAll(query ){
+    getAll( query ){
       return this.http.get(this.root+ query).map((res:Response) => res.json());
     }
-    update(el, query ) {
+    update( el, query ) {
       let response = this.createHeadersAndOptions(el);
       return this.http.put(this.root+ query ,response.body, response.options ).map((res: Response) => res.json());
     }
-    create(el, query ) {
+    create( el, query ) {
       let response = this.createHeadersAndOptions(el);
       return this.http.post(this.root + query, response.body , response.options ).map((res: Response) => res.json());
     }
