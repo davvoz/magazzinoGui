@@ -1,20 +1,412 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{title}}!
-  </h1>
-  <img width="300" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
+
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#section1" (click)='ngOnInit();changeVisibility(1)'>{{title}}</a>
+      </div>
+  
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+              
+              <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">ProdottiQta <span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                      <li (click)='changeVisibility(2)'><a href="#section2">Lista prodottiQta</a></li>
+                      <li (click)='changeVisibility(3)'><a href="#section3">Inserisci nuovo prodottoQta</a></li>
+                    
+                  </ul>
+                </li>
+              
+              <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Magazzini <span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                      <li (click)='changeVisibility(4)'><a href="#section4">Lista magazzini</a></li>
+                      <li (click)='changeVisibility(5)'><a href="#section5">Inserisci nuovo magazzino</a></li>
+                    
+                  </ul>
+                </li>
+           
+              <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Misure <span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                      <li (click)='changeVisibility(6)'><a href="#section6">Lista misure</a></li>
+                      <li (click)='changeVisibility(7)'><a href="#section7">Inserisci nuova misura</a></li>
+                    
+                  </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#section8" (click)='changeVisibility(8)'>Area giacenza</a>
+                    
+                  </li>
+            </ul>
+        
+        <ul class="nav navbar-nav navbar-right">
+            <ul class="dropdown-menu">
+                <li (click)='changeVisibility(2)'><a href="#section2">Misure</a></li>
+                <li (click)='changeVisibility(3)'><a href="#section3">Inserisci nuova misura</a></li>
+              </ul>
+              <ul class="dropdown-menu">
+                  <li (click)='changeVisibility(4)'><a href="#section4">Lista magazzini</a></li>
+                  <li (click)='changeVisibility(5)' ><a href="#section5">Inserisci nuovo magazzino</a></li>
+                </ul>
+                <ul class="dropdown-menu">
+                    <li (click)='changeVisibility(6)'><a href="#section6">Lista prodottiQta</a></li>
+                    <li (click)='changeVisibility(7)'><a href="#section7">Inserisci nuovo prodottoQta</a></li>
+                  </ul>
+                  
+          
+        </ul>
+      </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
+    
+<div class="container-fluid">
+  <div class="row content">
+    <div class="container">
+      <!-- home -->
+        <div [style.display]='visibility[1]' class="col-sm-12">
+            
+          <div class='well'>
+              <h2>Home</h2>
+          </div>
+          <div class="col-sm-12">
+              
+                  
+                  <div >
+                    <div class="col-sm-3">
+                      <div class="well">
+                        <h4>Numero magazzini</h4>
+                        <p>{{magazzini.length}}</p> 
+                      </div>
+                    </div>
+                    <div class="col-sm-3">
+                      <div class="well">
+                        <h4>Numero prodotti</h4>
+                        <p>{{prodottiQta.length}}</p> 
+                      </div>
+                    </div>
+                    <div class="col-sm-3">
+                      <div class="well">
+                        <h4>Numero misure</h4>
+                        <p>{{misure.length}}</p> 
+                      </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="well">
+                          <h4>Numero giacenze</h4>
+                          <p>{{giacenze.length}}</p> 
+                        </div>
+                      </div>
+                   
+                  </div> 
+              
+           </div>
+            
+
+          </div>
+      <!-- listaprodQta -->
+        <div [style.display]='visibility[2]' class="col-sm-12">
+            <div class='well'>
+                <h2>Lista prodotti</h2>
+            </div>
+              
+                <div class="col-sm-3" *ngFor="let prodottoQta of prodottiQta | paginate: { itemsPerPage: 8, currentPage: p ,id: 'idTre'}" >
+                  <div class="well">
+                    <div class="card" >
+                        <img class="preview"  [src]="'data:image/PNG;base64,' + prodottoQta.Immagine" alt="Card image cap">
+                        <div class="card-block">
+                          <h4 class="card-title">{{prodottoQta.ProdottoNome}}</h4>
+                          <p class="card-text">Tipo di misura : {{prodottoQta.TipologiaQta}} .  <button style="float:right" class="btn btn-success btn-sm" (click)="preliminariUpdateProdotto(prodottoQta)"><span class="glyphicon glyphicon-pencil"></span> </button></p>
+                         
+                        </div>
+                      </div>
+                    </div>
+                </div>
+                      
+                    
+                  <pagination-controls  class='my-pagination' (pageChange)="p = $event" id='idTre'></pagination-controls> 
+               
+              </div>
+              
+           
+      <!-- insertprodQta -->
+        <div [style.display]='visibility[3]' class="col-sm-12">
+          <div class='well'><h2>Nuovo prodotto quantità</h2></div>
+          <div class="form-group">
+              <label for="prodQtaNome">Nome prodotto</label>
+              <input type="text" class="form-control" id="prodQtaNome"  [(ngModel)]="prodQtaNomeModel" ><br>
+              
+                <label for="w">Tipo misura</label><br>
+             
+                  
+              <div class="dropdown" id='w' >
+                  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Scegli una misura
+                    </button>
+                    
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="min-width:100%;">
+                  <div class="btn-group" role="group" aria-label="Basic example"> 
+                    <div  class="col-sm-3" *ngFor="let misura of misure" >
+                        <button type="button" class="btn btn-secondary" (click)='insertInClient(misura.MisuraIn)'>{{misura.MisuraIn}}</button>
+                    </div>
+                 
+                  </div>
+                  </div>
+                    </div>
+                   
+               
+            
+            <div>
+            
+              <input type="text" class="form-control" id="prodQtaMisuraIn"  [(ngModel)]="prodQtaMisuraModel" placeholder="...o inseriscine una nuova" >
+            
+            </div>
+            <label for="z">Immagine</label>
+            <div class="form-group" id="z">
+             
+              <div class="input-group col-xs-12">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-picture"></i></span>
+                <input type="text" class="form-control input-sm" disabled placeholder="Upload Image">
+                <span class="input-group-btn">
+                  <label class="btn btn-default btn-file" (change)="getFiles($event)">
+                    Browse <input type="file" style="display: none;"><i class="glyphicon glyphicon-search"></i>
+                </label>
+                </span>
+                
+              </div>
+            </div>
+            
+            <div class="col-sm-2">
+              <img [src]="logo" class="preview" > 
+            </div>
+          </div>
+          <input   type="button" class="btn btn-success" (click)="createProdQta()" value='ok' ><br>
+          
+          </div>
+      <!-- listaMag -->
+        <div [style.display]='visibility[4]' class="col-sm-12">
+              <div class='well'><h2>Magazzini</h2></div>
+            <ul class="list-group">
+              <li *ngFor="let magazzino of magazzini | paginate: { itemsPerPage: 8, currentPage: a,id: 'idDue' }"  class="list-group-item" >
+                <span class="badge">{{magazzino.Id}}</span>
+                {{magazzino.Nome}} &nbsp;
+                {{magazzino.Locazione}}
+              </li>
+            </ul>
+            <pagination-controls class='my-pagination' (pageChange)="a = $event" id='idDue'></pagination-controls>
+          </div>
+      <!-- addMag -->
+        <div [style.display]='visibility[5]' class="col-sm-12"> 
+              <div class='well'>
+                <h2>New magazzino</h2>
+                </div>
+                <div class="form-group">
+                  <label for="nomeMagazzino">Nome magazzino</label>
+                  <input type="text" class="form-control" id="nomeMagazzino"  [(ngModel)]="magazzinoNomeModel" >
+                </div>
+                <div class="form-group">
+                    <label for="location">Locazione magazzino</label>
+                    <input type="text" class="form-control" id="location"  [(ngModel)]="magazzinoLocazioneModel" >
+                  </div>
+            
+                <input style="float:left"  type="button" class="btn btn-success" (click)="createMagazzino()" value='ok' >
+              
+              </div>
+      <!-- listaMisura -->
+        <div [style.display]='visibility[6]' class="col-sm-12">
+          <div class='well'><h2>Misure</h2></div>
+            <ul class="list-group">
+              <li  class="list-group-item" *ngFor="let misura of misure| paginate: { itemsPerPage: 8, currentPage: l,id: 'idUno' }">{{misura.MisuraIn}}
+                <span class="badge">{{misura.Id}}</span>
+              </li>
+            </ul>
+                <pagination-controls class='my-pagination' (pageChange)="l = $event" id='idUno'></pagination-controls>
+              </div>
+        
+      <!-- addMisura -->    
+        <div [style.display]='visibility[7]' class="col-sm-12"> 
+            <div class='well'><h2>New misura</h2></div>
+              <div class="form-group">
+                <label for="misuraIn">Misura in</label>
+                <input type="text" class="form-control" id="misuraIn"  [(ngModel)]="misuraInMisuraModel" >
+              </div>
+              <input style="float:left"  type="button" class="btn btn-success" (click)="createQta()" value='ok' >
+            </div>    
+        
+      <!-- areaGiacenza -->  
+        <div [style.display]='visibility[8]' class="col-sm-12">
+            <div class='well'>
+                <h2>Area giacenza</h2><p>Seleziona il magazzino da ispezionare
+                </div>
+                <div class="container">
+                    <div *ngFor="let magazzino of magazzini | paginate: { itemsPerPage: 11, currentPage: ab,id: 'idDuez' }"   class="col-sm-2" (click)='magDetail(magazzino.Nome,magazzino.Id)' >
+                      <div class='well'> <strong>{{magazzino.Nome}}</strong> 
+                      {{magazzino.Locazione}}</div>
+                    </div>
+                  </div>
+                  <pagination-controls class='my-pagination' (pageChange)="ab = $event" id='idDuez'></pagination-controls>
+          </div>
+      <!-- detailGiacenzeMag -->
+        <div [style.display]='visibility[9]' class="col-sm-12">
+            <div class='well'>
+                
+                <h2>Area giacenza magazzino : {{magazzinoNomeModel}}</h2> 
+                <div class="container">
+                <div class="col-sm-4">
+                <button type="button" (click)="changeVisibility(10)" class="btn btn-primary btn-sm">aggiungi giacenza</button>
+              </div>
+              <div class="col-sm-4">
+                <input type="text"><button class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-search"></span></button>
+                </div>
+                <div class="col-sm-4">
+                  <button type="button" (click)="saveAll(magazzinoNomeModel)" [style.display]="enableSaveAll" class="btn btn-success btn-sm">SAVE ALL <span class="glyphicon glyphicon-saved"></span></button>
+                </div>
+                
+                
+              </div>
+            </div>
+            
+                <div class="container">
+                    <div *ngFor="let product of prodottiMagazzino | paginate: { itemsPerPage: 8, currentPage: abc,id: 'idDuezi' }; let i=index"   class="col-sm-4"  >
+                      <div class='well'> <strong>{{product.ProdottoNome | uppercase}}</strong><br>
+                        Numero ordine(id) {{product.Id}}
+                        <br>
+                        Scadenza : {{product.Scadenza | date: format}} <br>
+                        Inserimento : {{product.Inserimento | date: format}}<br>
+                        Quantità : <div class="btn-group">
+                            <button type="button" class="btn btn-outline-secondary btn-sm" [style.background]="styleWarning[i]"  >
+                              {{prodQuantita[i]}} {{product.TipologiaQtaString}}
+                                
+                              </button>
+                        <button type="button" class="btn btn-outline-primary btn-sm" (click)="aggiungi(i)" >
+                          <span class="glyphicon glyphicon-plus"></span> 
+                          
+                        </button>
+                        <button type="button" class="btn btn-outline-primary btn-sm" (click)="togli(i)" >
+                          <span class="glyphicon glyphicon-minus"></span> 
+                          
+                        </button>
+                        <button [style.display]="prodEnableConfirm[i]" class="btn btn-success btn-sm" (click)='updateGiacenza(product,i)'><span class="glyphicon glyphicon-saved"></span></button></div><br>
+                       </div>
+                    
+                  </div>
+                  
+                  <pagination-controls class='my-pagination'(pageChange)="abc = $event" id='idDuezi'></pagination-controls>
+               </div>
+               
+       
+          </div>
+      <!-- addGiacenza -->
+        <div [style.display]='visibility[10]' class="col-sm-12">
+            <div class='well' >
+                <h2>Area inserimento prodotti in magazzino : {{magazzinoNomeModel}}</h2>
+                <button class="btn btn-primary btn-sm" type="button" (click)="preliminariTornaDa()">Torna da {{magazzinoNomeModel}} </button>
+            </div>
+                
+            <form >
+              <div class="form-group">
+                <label for="ProdottoNome">Scegli una prodotto</label>
+                <div class="dropdown" style="min-width: 100%;" >
+                  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Prodotti
+                    </button>
+                  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="min-width:100%;">
+                      <div class="btn-group" role="group" aria-label="Basic example"> 
+                        <div *ngFor="let prodotto of prodottiQta " class="col-sm-1" id="cont">
+                          <button type="button" class="btn btn-secondary" (click)="assegnaParametriProdottoAlModel(prodotto.ProdottoNome,prodotto.Id,prodotto.TipologiaQta)">{{prodotto.ProdottoNome}}</button>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+                <span id='ProdottoNome' name='ProdottoNome' class="form-control"  >{{newGiacenzaNomeProdotto}}</span>
+                <label for="Scadenza">Scadenza</label>
+                <input type='date' id='Scadenza' name='Scadenza' class="form-control" [(ngModel)]="newGiacenzaScadenza">
+                <label for="Quantita">{{newGiacenzaTipoQtaProdotto}} </label>
+                <input type='number' id='Quantita' name='Quantita' class="form-control" [(ngModel)]="newGiacenzaQuantita">
+                <label for="ProdottoId	">Prodotto id</label>
+                <span type='number' id='ProdottoId' name='ProdottoId'> {{newGiacenzaIdProdotto}}</span><br>
+                <label for="MagazzinoId">Magazzino id</label>
+                <span type='number' id='MagazzinoId' name='MagazzinoId' >{{magazzinoIdModel}}</span><br>
+                <label for="Inserimento">Inserimento</label>
+                <span type='date' id='Inserimento' name='Inserimento' >{{newGiacenzaInserimento | date : format}}</span>
+              </div>  
+            </form>
+            <button  class="btn btn-success btn-sm" (click)='addGiacenza()' value="Aggiungi prodotto"><span class="glyphicon glyphicon-saved"></span></button>
+         </div>  
+      <!-- updateProd -->
+        <div [style.display]='visibility[11]' class="col-sm-12">
+            <div class='well'>
+                <h2>Modifica prodotto : {{prodNomeTitleModel}}</h2> 
+
+                <button type="button" (click)="changeVisibility(2)" class="btn btn-primary btn-sm">torna alla lista</button>
+            </div>
+            <div class="form-group">
+                <label for="prodQtaNome1">Nome prodotto</label>
+                <input type="text" class="form-control" id="prodQtaNome1"  [(ngModel)]="prodNomeModel" ><br>
+                <div><label for="w1">Tipo misura</label><br>
+                <div style="float: left;" id='w1'>
+                    
+                <div class="dropdown" >
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Scegli una misura
+                      </button>
+                      
+                  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="min-width:100%;">
+                    <div class="btn-group" role="group" aria-label="Basic example"> 
+                      <div  class="col-sm-6" *ngFor="let misura of misure" >
+                          <button type="button" class="btn btn-secondary" (click)='insertInClient2(misura.MisuraIn)'>{{misura.MisuraIn}}</button>
+                      </div>
+                    
+                    </div>
+                    </div>
+                      </div>
+                  
+              </div>
+              
+                  <input type="text" class="form-control"  [(ngModel)]="prodTipologiaQtaModelString" >
+                
+              
+              
+              <label for="z">Immagine</label>
+              <div class="form-group" id="z">
+               
+                <div class="input-group col-xs-12">
+                  <span class="input-group-addon"><i class="glyphicon glyphicon-picture"></i></span>
+                  <input type="text" class="form-control input-sm" disabled placeholder="Upload Image">
+                  <span class="input-group-btn">
+                    <label class="btn btn-default btn-file" (change)="getFiles2($event)">
+                      Browse <input type="file" style="display: none;"><i class="glyphicon glyphicon-search"></i>
+                  </label>
+                  </span>
+                  
+                </div>
+              </div>
+              <div class="col-sm-2" [style.display]='visibilityFoto[0]'>
+                <img [src]="'data:image/PNG;base64,' + prodImmagineOld" class="preview" > 
+              </div>
+              <div class="col-sm-2" [style.display]='visibilityFoto[1]' >
+                  <img [src]="prodImmagine" class="preview" > 
+                </div>
+              </div>
+            </div>
+            <input   type="button" class="btn btn-success" value='ok' (click)="updateProdotto()" >
+          </div>
+    </div>
+  </div>
 </div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://github.com/angular/angular-cli/wiki">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
+    
+    
+
+     
+
+
+
 
