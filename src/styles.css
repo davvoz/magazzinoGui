@@ -18,10 +18,7 @@
   color: red;
   float: right;
 }
-.my-pagination /deep/ .ngx-pagination .current {
-  background: black;;
-  border-radius: 10%
-}
+
 #cont button {
   min-width: 100%;
   max-width: 100%;

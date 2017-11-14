@@ -1,11 +1,6 @@
 import { Component,OnInit  } from '@angular/core';
-import { Magazzino } from './modules/magazzino';
 import { HttpClient } from '@angular/common/http';
-import {TipoQtaService} from'./services/tipoQtaService';
-import { MagazzinoService} from'./services/magazzinoService';
-import { ProdottoQtaService} from'./services/prodottoQtaService';
-import { GiacenzeService} from'./services/giacenzeService';
-import { TestService} from'./services/testService';
+import { HttpService} from'./services/httpService';
 import { Observable } from "rxjs/Observable";
 import { Modal } from 'angular2-modal/plugins/bootstrap';
 
@@ -79,12 +74,13 @@ export class AppComponent implements OnInit{
   public logo:any;
   public fotos:any[];
   
+ 
   constructor(
-   private serviceQta: TipoQtaService , 
-   private serviceMagazzino: MagazzinoService , 
-   private serviceProdQta: ProdottoQtaService,
-   private serviceTest:TestService,
-   private serviceGiacenze:GiacenzeService,
+   private serviceQta: HttpService , 
+   private serviceMagazzino: HttpService , 
+   private serviceProdQta: HttpService,
+   private serviceTest:HttpService,
+   private serviceGiacenze:HttpService,
    public modal: Modal
   ){
     
@@ -118,7 +114,7 @@ export class AppComponent implements OnInit{
           .open();
       }
   getTest() {
-      this.serviceTest.getTest().subscribe(
+      this.serviceTest.getAll("Test/Get").subscribe(
         // the first argument is a function which runs on success
         data => { this.test = data},
         // the second argument is a function which runs on error
@@ -139,7 +135,7 @@ export class AppComponent implements OnInit{
       Quantita:this.prodQuantita[index]
     };
     console.log(convertGiac);
-      this.serviceGiacenze.updateProduct(convertGiac).subscribe(
+      this.serviceGiacenze.update(convertGiac,"Giacenze/UpdateGiacenza").subscribe(
         // the first argument is a function which runs on success
         data => {
            this.giacenza = data ; 
@@ -187,7 +183,7 @@ export class AppComponent implements OnInit{
     
    this.inizia = false ;
        
-    this.serviceProdQta.updateProduct(this.prodModel).subscribe(
+    this.serviceProdQta.update(this.prodModel,"ProdottoQta/UpdateProdottoQta").subscribe(
       // the first argument is a function which runs on success
       data => { 
         this.onClick(JSON.stringify( this.prodModel),'Prodotto aggiornato');
@@ -200,7 +196,7 @@ export class AppComponent implements OnInit{
 
     }
   getProductsFromMagazzino(magazzinoId){
-    this.serviceGiacenze.getProducts(magazzinoId).subscribe(
+    this.serviceGiacenze.getFromId(magazzinoId,"GiacenzeProdotti/GetGiacenzeProdottiFromMagazzinoId/").subscribe(
       // the first argument is a function which runs on success
       data => { 
         this.prodottiMagazzino = data ; 
@@ -222,7 +218,7 @@ export class AppComponent implements OnInit{
     );
    }
   getMisure() {
-    this.serviceQta.getAllQta().subscribe(
+    this.serviceQta.getAll("TipoQuantita/GetAllQta").subscribe(
       // the first argument is a function which runs on success
       data => { this.misure = data},
       // the second argument is a function which runs on error
@@ -232,7 +228,7 @@ export class AppComponent implements OnInit{
     );
     }
   getMagazzini() {
-    this.serviceMagazzino.getAllMagazzini().subscribe(
+    this.serviceMagazzino.getAll("Magazzino/GetMagazzini").subscribe(
       // the first argument is a function which runs on success
       data => { this.magazzini = data},
       // the second argument is a function which runs on error
@@ -242,7 +238,7 @@ export class AppComponent implements OnInit{
     );
     }
   getProdottiQta() {
-    this.serviceProdQta.getAllProdottiQta().subscribe(
+    this.serviceProdQta.getAll("ProdottoQta/GetAllProdottiQta").subscribe(
       // the first argument is a function which runs on success
       data => { this.prodottiQta = data},
       // the second argument is a function which runs on error
@@ -252,7 +248,7 @@ export class AppComponent implements OnInit{
     );
     }
   getGiacenze() {
-      this.serviceGiacenze.getAllGiacenze().subscribe(
+      this.serviceGiacenze.getAll("Giacenze/GetGiacenze").subscribe(
         // the first argument is a function which runs on success
         data => { this.giacenze = data},
         // the second argument is a function which runs on error
@@ -264,7 +260,7 @@ export class AppComponent implements OnInit{
   createQta() {
     this.misura={Id : this.idMisuraModel , MisuraIn : this.misuraInMisuraModel};
     
-    this.serviceQta.createTipoQta(this.misura).subscribe(
+    this.serviceQta.create(this.misura,"TipoQuantita/InsertQta").subscribe(
        data => {
          this.getMisure();
         
@@ -281,7 +277,7 @@ export class AppComponent implements OnInit{
     
     this.prodQta={ ProdottoNome : this.prodQtaNomeModel , TipologiaQta : this.prodQtaMisuraModel, Immagine :this.prodQtaImg64};
     
-    this.serviceProdQta.createProdQta(this.prodQta).subscribe(
+    this.serviceProdQta.create(this.prodQta,"ProdottoQta/InsertProdottoQta").subscribe(
        data => {
          this.getProdottiQta();
          this.onClick(JSON.stringify(this.prodQta),'Prodotto inserito')
@@ -296,7 +292,7 @@ export class AppComponent implements OnInit{
     }
   createMagazzino(){
     this.magazzino = { Nome : this.magazzinoNomeModel ,Locazione : this.magazzinoLocazioneModel};
-      this.serviceMagazzino.createMagazzino(this.magazzino).subscribe(
+      this.serviceMagazzino.create(this.magazzino,"Magazzino/InsertMagazzino").subscribe(
          data => {
            this.getMagazzini();
            this.changeVisibility(4);
@@ -350,7 +346,7 @@ export class AppComponent implements OnInit{
       ProdottoId : this.newGiacenzaIdProdotto,
       MagazzinoId : this.magazzinoIdModel
     }
-    this.serviceGiacenze.createGiacenza(this.newGiacenza).subscribe(
+    this.serviceGiacenze.create(this.newGiacenza,"Giacenze/InsertGiacenze").subscribe(
       data => {
         this.onClick(JSON.stringify(this.newGiacenza),"Prodotto inserito in magazzino")
         return true;
